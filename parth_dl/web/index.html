@@ -659,6 +659,7 @@ createApp({
 
       submitting.value = true;
       urlInput.value = '';
+      jobs.value = []; // Bersihkan hasil download sebelumnya tiap kali submit link baru
 
       const job = makeJob({ url, state: 'queued', message: 'Mengambil metadata…' });
       jobs.value.unshift(job);
@@ -710,6 +711,7 @@ createApp({
 
     function clearInput() {
       urlInput.value = '';
+      jobs.value = []; // Bersihkan input dan daftar kartu download
     }
 
     async function copyInstall() {
