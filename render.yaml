@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: parth-dl-backend
+    runtime: python
+    plan: free
+    buildCommand: pip install -e .
+    startCommand: parth-dl serve --allow-remote --host 0.0.0.0 --no-open
+    envVars:
+      - key: PARTH_DL_ALLOW_REMOTE
+        value: "1"
+      - key: PARTH_DL_API_KEY
+        generateValue: true
+      - key: PARTH_DL_CORS_ORIGIN
+        value: https://REPLACE-WITH-YOUR-VERCEL-DOMAIN.vercel.app
+    # Optional: persistent disk for downloaded files (needs a paid plan,
+    # not available on "free"). Without it, downloads/ is wiped on every
+    # deploy/restart - see README.
+    # disk:
+    #   name: downloads
+    #   mountPath: /opt/render/project/src/downloads
+    #   sizeGB: 1
